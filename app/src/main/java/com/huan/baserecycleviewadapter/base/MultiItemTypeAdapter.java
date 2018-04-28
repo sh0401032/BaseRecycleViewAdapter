@@ -2,6 +2,7 @@ package com.huan.baserecycleviewadapter.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,7 +43,7 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemViewDelegate delegate = delegateManager.getItemViewDelegate(viewType);
         int layoutId = delegate.getItemViewLayoutId();
-        BaseViewHolder holder = BaseViewHolder.createBaseViewHolder(mContext, parent, layoutId);
+        BaseViewHolder holder = BaseViewHolder.createBaseViewHolder(LayoutInflater.from(mContext).inflate(layoutId, parent, false));
         onViewHolderCreated(holder, holder.itemView);
         return holder;
     }

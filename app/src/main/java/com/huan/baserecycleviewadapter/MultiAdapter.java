@@ -1,6 +1,7 @@
 package com.huan.baserecycleviewadapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -62,6 +63,13 @@ public class MultiAdapter extends MultiItemTypeAdapter<Object> {
         public void convert(BaseViewHolder holder, Object s, int position) {
             TextView tv = holder.getView(R.id.tv_string);
             tv.setText((String) s);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, HeaderAndFooterActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
         }
     }
 }
