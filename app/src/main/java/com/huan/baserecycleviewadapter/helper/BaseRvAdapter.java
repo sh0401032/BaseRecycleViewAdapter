@@ -27,13 +27,16 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
     private LinearLayout mFooterLayout;
     public static final int HEADER_VIEW = 0x00000111;
     public static final int FOOTER_VIEW = 0x00000222;
-    public static final int EMPTY_VIEW = 0x00000555;
 
     public BaseRvAdapter(@LayoutRes int layoutId, List<T> list) {
         mData = list == null ? new ArrayList<T>() : list;
         if (layoutId != 0) {
             mLayoutId = layoutId;
         }
+    }
+
+    public BaseRvAdapter(List<T> list) {
+        this(0, list);
     }
 
     @Override
@@ -49,15 +52,19 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
                 holder = BaseViewHolder.createBaseViewHolder(mFooterLayout);
                 break;
             default:
-                holder = createViewHolder(parent);
+                holder = createDefViewHolder(parent, viewType);
                 break;
         }
         return holder;
     }
 
-    private BaseViewHolder createViewHolder(ViewGroup parent) {
+    protected BaseViewHolder createDefViewHolder(ViewGroup parent, int viewType) {
         int layoutId = mLayoutId;
 
+        return createBaseViewHolder(parent, layoutId);
+    }
+
+    protected BaseViewHolder createBaseViewHolder(ViewGroup parent, @LayoutRes int layoutId) {
         return BaseViewHolder.createBaseViewHolder(getItemView(layoutId, parent));
     }
 
