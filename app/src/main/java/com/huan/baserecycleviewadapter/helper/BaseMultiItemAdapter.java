@@ -16,7 +16,6 @@ public abstract class BaseMultiItemAdapter<T> extends BaseRvAdapter<T> {
     private SparseIntArray layouts;
     private static final int DEFAULT_VIEW_TYPE = -0xff;
     public static final int TYPE_NOT_FOUND = -404;
-
     public BaseMultiItemAdapter(List<T> list) {
         super(list);
     }
@@ -34,9 +33,6 @@ public abstract class BaseMultiItemAdapter<T> extends BaseRvAdapter<T> {
         return layouts.get(itemType, TYPE_NOT_FOUND);
     }
 
-    protected void setItemType() {
-
-    }
 
     protected void addItemType(int itemType, @LayoutRes int layoutId) {
         if (layouts == null) {

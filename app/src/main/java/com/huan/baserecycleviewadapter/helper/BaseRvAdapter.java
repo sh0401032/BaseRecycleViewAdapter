@@ -19,7 +19,7 @@ import java.util.List;
 
 public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private List<T> mData;
+    public List<T> mData;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private int mLayoutId;
@@ -84,6 +84,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
             case FOOTER_VIEW:
                 break;
             default:
+                covert(holder, getItem(position - getHeaderViewCount()));
                 break;
         }
 
@@ -111,7 +112,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
     }
 
     // 返回adapter定义的数据类型
-    private int getDefItemViewType(int position) {
+    protected int getDefItemViewType(int position) {
 
         return super.getItemViewType(position);// 0
     }
