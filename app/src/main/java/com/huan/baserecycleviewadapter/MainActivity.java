@@ -4,6 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,5 +37,10 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter = new MultiAdapter(this, list);
         rv.setAdapter(adapter);
+
+        View footer = LayoutInflater.from(this).inflate(R.layout.item_string, (ViewGroup) rv.getParent(), false);
+        TextView tvString = footer.findViewById(R.id.tv_string);
+        tvString.setText("Header View");
+        adapter.addHeaderView(footer);
     }
 }

@@ -99,7 +99,7 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseViewHold
             int tmp = position - headerViewCount;
             int adapterCount = mData.size();
             if (tmp < adapterCount) { // 数据
-                return getDefItemViewType(position);
+                return getDefItemViewType(tmp);
             } else {
                 tmp = tmp - adapterCount;
                 if (tmp < getFooterViewCount()) {// 尾
